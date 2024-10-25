@@ -36,7 +36,10 @@ app.get('/', (req, res) => {
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);
-
+// Test route
+app.get("/test", (req, res) => {
+  res.send(`response from container: ${process.env.HOSTNAME}`);
+});
 // Khởi chạy server
 const PORT = process.env.PORT || 3000;
 

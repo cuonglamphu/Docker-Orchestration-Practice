@@ -26,9 +26,9 @@ const useFetchCartItems = () => {
 
         if (!cartResponse.ok) {
           if (cartResponse.status === 401) {
-            window.location.href = '/login';
+            return window.location.href = '/login';
           }
-          throw new Error('Failed to fetch cart items');
+          return window.location.href = '/login';
         }
 
         const cartData = await cartResponse.json();

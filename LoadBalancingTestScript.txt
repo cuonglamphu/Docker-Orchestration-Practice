@@ -1,0 +1,5 @@
+for ($i = 1; $i -le 10; $i++) {
+    $response = curl http://localhost:3000/test
+    Write-Output "Response #${i}:`n${response}`n"  # In ra số thứ tự và nội dung phản hồi, cách một dòng
+    Write-Output "----------------------------"    # Đường gạch ngang phân cách mỗi phản hồi
+}
