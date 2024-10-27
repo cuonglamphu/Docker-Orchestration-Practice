@@ -8,6 +8,8 @@ This is a React (Frontend) and Node.js (Backend) application using Redis and Mon
 - Docker and Docker Compose installed
 - Docker Swarm initialized
 
+> ⚠ **Important:** Ensure that no other application is using ports **3000**, **8080**, **27017**, and **6379** on your machine. These ports are used for the frontend, backend, MongoDB, and Redis services, respectively.
+
 ## Running Instructions
 
 ### Step 1: Clone the Repository (if not already present)
@@ -72,6 +74,20 @@ Replace `onlineshop_backend` and `onlineshop_frontend` with the name of the serv
 - **Frontend (React)**: Access `http://localhost:8080` in your browser.
 - **Backend (Node.js)**: The API is served at `http://localhost:3000`.
 
+## Load Balancing Test
+
+To test load balancing across service replicas, you can run the following PowerShell script. This script makes 10 requests to the backend API at `http://localhost:3000/test` and outputs the response for each request. Each request should ideally be served by a different replica if load balancing is correctly configured.
+
+```powershell
+for ($i = 1; $i -le 10; $i++) {
+    $response = curl http://localhost:3000/test
+    Write-Output "Response #${i}:`n${response}`n" 
+    Write-Output "----------------------------"    
+}
+```
+
+This test allows you to verify that requests are distributed across backend replicas.
+
 ## Persistent Storage
 
 - **MongoDB**: Data is stored in the `mongo-data` volume to ensure data persistence.
@@ -87,8 +103,12 @@ docker stack rm onlineshop
 
 This command removes all services in the `onlineshop` stack.
 
+## Demo Video
+
+For a video demonstration, please watch [here](https://youtu.be/f97Sc0Ci940?si=SGwmKj23-PALl5il).
+
 ---
 
 With these steps, you can easily start and manage your Node-GK application on Docker Swarm.
-# Docker-Orchestration-Practice
-# Docker-Orchestration-Practice
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
